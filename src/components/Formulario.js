@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid'
+import PropTypes from 'prop-types'
 
 
 const Formulario = ({createAppointment}) => {
@@ -28,7 +29,7 @@ const Formulario = ({createAppointment}) => {
     //function to send Form
     const submitAppointment = e => {
         e.preventDefault()
-        console.log(mascota)
+        
         //Validate
         if (mascota.trim() === "" || propietario.trim() ==="" || fecha.trim() ==="" || hora.trim() ===""|| sintomas.trim() ==="") {
             errorHandling(true)
@@ -40,8 +41,7 @@ const Formulario = ({createAppointment}) => {
 
         //Asign ID
         appointment.id =uuid()
-        console.log(appointment)
-        
+       
         //Create Appointment
         createAppointment(appointment)
 
@@ -114,6 +114,10 @@ const Formulario = ({createAppointment}) => {
             </form>
         </>
       );
+}
+
+Formulario.propTypes = {
+    submitAppointment: PropTypes.func.isRequired
 }
  
 export default Formulario
